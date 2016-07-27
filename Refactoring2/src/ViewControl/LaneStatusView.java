@@ -83,8 +83,9 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		viewPinSetter.addActionListener(this);
 		viewPinSetterPanel.add(viewPinSetter);
 
-		maintenance = new JButton("     ");
-		maintenance.setBackground( Color.GREEN );
+		maintenance = new JButton("Unpause Game");
+		maintenance.setBackground(Color.GREEN);
+		maintenance.setOpaque(true);
 		JPanel maintenancePanel = new JPanel();
 		maintenancePanel.setLayout(new FlowLayout());
 		maintenance.addActionListener(this);
@@ -183,49 +184,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 				}
 			}
 		}
-		
-			
-//			else if (partyAssigned && gameFinished) {
-//				EndGamePrompt egp = new EndGamePrompt( ((Bowler) party.getMembers().get(0)).getNickName() + "'s Party" );
-//				int result = egp.getResult();
-//				egp.distroy();
-//				egp = null;
-//				
-//				
-//				System.out.println("result was: " + result);
-//				
-//				// TODO: send record of scores to control desk
-//				if (result == 1) {					// yes, want to play again
-//					resetScores();
-//					resetBowlerIterator();
-//					
-//				} else if (result == 2) {// no, dont want to play another game
-//					Vector printVector;	
-//					EndGameReport egr = new EndGameReport( ((Bowler)party.getMembers().get(0)).getNickName() + "'s Party", party);
-//					printVector = egr.getResult();
-//					partyAssigned = false;
-//					Iterator scoreIt = party.getMembers().iterator();
-//					party = null;
-//					partyAssigned = false;
-//					
-//					publish(lanePublish());
-//					
-//					int myIndex = 0;
-//					while (scoreIt.hasNext()){
-//						Bowler thisBowler = (Bowler)scoreIt.next();
-//						ScoreReport sr = new ScoreReport( thisBowler, finalScores[myIndex++], gameNumber );
-//						sr.sendEmail(thisBowler.getEmail());
-//						Iterator printIt = printVector.iterator();
-//						while (printIt.hasNext()){
-//							if (thisBowler.getNick() == (String)printIt.next()){
-//								System.out.println("Printing " + thisBowler.getNick());
-//								sr.sendPrintout();
-//							}
-//						}
-//
-//					}
-//				}
-//			}
+
 			
 			
 		curBowler.setText( ( (Bowler)le.getBowler()).getNickName() );
