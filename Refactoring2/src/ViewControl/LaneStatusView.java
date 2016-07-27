@@ -149,7 +149,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		Lane lane = le.getLane();
 		
 		if(lane.isGameFinished() && lane.isPartyAssigned()){ // Start end of game routine
-			
+			System.out.println("MADE IT HERE");
 			EndGamePrompt egp = new EndGamePrompt( ((Bowler) le.getParty().getMembers().get(0)).getNickName() + "'s Party" );
 			int result = egp.getResult();
 			egp.distroy();
