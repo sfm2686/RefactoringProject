@@ -10,3 +10,6 @@ The Lane.java file had some GUI code in it that needed migrating to the correct 
 	Transfered the end-of-game code in Lane to LaneStatusView, decoupling the Model from the GUI.
 	
 Note: Eclipse not allowing program to be run correctly. Runs fine from the command line though.
+
+Also made minor change to LaneView. Needed to assess whether the game was over before trying 
+to write the score to its perspective frame.

@@ -1,0 +1,12 @@
+Changed the class visibility of BowlerFile.java and ControlDesk.java so that the 
+GUI components would have access to them being from a different package.
+
+Moved all of the View/Control elements of the program to a new ViewControl package.
+Moved all of the Model elements of the program to a new Model package.
+
+The Lane.java file had some GUI code in it that needed migrating to the correct classes.
+	Set the resetScores and resetBowlerIterator methods to public to allow GUI control.
+	Added a few getters within Lane so that LaneStatusView is able to generate the end-of-game routine originally found in Lane.
+	Transfered the end-of-game code in Lane to LaneStatusView, decoupling the Model from the GUI.
+	
+Note: Eclipse not allowing program to be run correctly. Runs fine from the command line though.
