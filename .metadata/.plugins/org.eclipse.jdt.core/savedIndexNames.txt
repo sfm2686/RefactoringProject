@@ -1,0 +1,13 @@
+INDEX VERSION 1.127+/Users/Muro/Documents/School/Summer2016/SWEN262/Refactoring/RefactoringProject/RefactoringProject/.metadata/.plugins/org.eclipse.jdt.core
+3592926953.index
+3199089090.index
+2904613641.index
+3704923105.index
+1271342938.index
+2497576214.index
+185600855.index
+382740279.index
+3609545612.index
+395996804.index
+665282680.index
+2096620088.index

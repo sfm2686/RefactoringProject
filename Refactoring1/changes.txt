@@ -1,0 +1,3 @@
+Changed the path in the BowlerFile.java and the ScoreHistoryFile.java classes
+to reflect the correct database file locations so that the project is runnable
+during the series of refactorings to be made.

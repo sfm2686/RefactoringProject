@@ -1,1 +1,0 @@
-Simply changed the path of the BOWLERS.DAT and SCOREHISTORY.DAT files in their respecitve classes (BowlerFile.java and ScoreHistoryFile.java) in order to get the project in a runnable/usable state.
