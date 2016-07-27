@@ -9,8 +9,9 @@
     <persistedState key="isRestored" value="true"/>
     <persistedState key="show_in_time" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;show_in_time/>"/>
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;workingSets/>"/>
-    <persistedState key="aggregateWorkingSetId"/>
+    <persistedState key="aggregateWorkingSetId" value="Aggregate for window 1469567883687"/>
     <tags>topLevel</tags>
+    <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="__y53gFJ3EeaGPqoAkjgr8w" selectedElement="__y53gVJ3EeaGPqoAkjgr8w" horizontal="true">
       <children xsi:type="advanced:PerspectiveStack" xmi:id="__y53gVJ3EeaGPqoAkjgr8w" elementId="org.eclipse.ui.ide.perspectivestack" containerData="7500" selectedElement="_ABAk8FJ4EeaGPqoAkjgr8w">
         <children xsi:type="advanced:Perspective" xmi:id="_ABAk8FJ4EeaGPqoAkjgr8w" elementId="org.eclipse.jst.j2ee.J2EEPerspective" selectedElement="_ABBMAFJ4EeaGPqoAkjgr8w" label="Java EE" iconURI="platform:/plugin/org.eclipse.jst.j2ee.ui/icons/full/cview16/j2ee_perspective.gif">
@@ -298,7 +299,7 @@
           <tags>removeOnHide</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_JXPUgFJ4EeaGPqoAkjgr8w" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ScoreReport.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ScoreReport.java&quot; partName=&quot;ScoreReport.java&quot; title=&quot;ScoreReport.java&quot; tooltip=&quot;/Users/huntercaskey/git/RefactoringProject/RefactoringProject/src/ScoreReport.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/Users/huntercaskey/git/RefactoringProject/RefactoringProject/src/ScoreReport.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;10&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;ScoreReport.java&quot; partName=&quot;ScoreReport.java&quot; title=&quot;ScoreReport.java&quot; tooltip=&quot;/Users/huntercaskey/git/RefactoringProject/RefactoringProject/src/ScoreReport.java&quot;>&#xA;&lt;input factoryID=&quot;org.eclipse.ui.ide.FileStoreEditorInputFactory&quot; uri=&quot;file:/Users/huntercaskey/git/RefactoringProject/RefactoringProject/src/ScoreReport.java&quot;/>&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -306,7 +307,7 @@
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_AAwGQFJ4EeaGPqoAkjgr8w" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources/icons/full/eview16/resource_persp.gif" tooltip="" closeable="true">
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;/>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; currentWorkingSetName=&quot;Aggregate for window 1469567883687&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;/>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
       <tags>active</tags>
@@ -400,7 +401,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="__13E4FJ3EeaGPqoAkjgr8w" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="__2CEAFJ3EeaGPqoAkjgr8w" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="__LJ7EFJ3EeaGPqoAkjgr8w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_GhBSMFQhEea4gqDGq7BKrQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="__LJ7EFJ3EeaGPqoAkjgr8w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="__13r8FJ3EeaGPqoAkjgr8w" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -430,7 +431,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="__13r9FJ3EeaGPqoAkjgr8w" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="__2EgQFJ3EeaGPqoAkjgr8w" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="__LIs8lJ3EeaGPqoAkjgr8w"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_GhGxwFQhEea4gqDGq7BKrQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="__LIs8lJ3EeaGPqoAkjgr8w"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="__14TAFJ3EeaGPqoAkjgr8w" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1026,7 +1027,7 @@
       <tags>platform:cocoa</tags>
       <parameters xmi:id="__Mpv3VJ3EeaGPqoAkjgr8w" elementId="org.eclipse.ui.views.showView.viewId" name="org.eclipse.ui.views.showView.viewId" value="org.eclipse.jdt.ui.SourceView"/>
     </bindings>
-    <bindings xmi:id="__M4ZUlJ3EeaGPqoAkjgr8w" keySequence="COMMAND+CTRL+F" command="__M4ZUFJ3EeaGPqoAkjgr8w"/>
+    <bindings xmi:id="_FzrEAVQhEea4gqDGq7BKrQ" keySequence="COMMAND+CTRL+F" command="__M4ZUFJ3EeaGPqoAkjgr8w"/>
   </bindingTables>
   <bindingTables xmi:id="__MGWNVJ3EeaGPqoAkjgr8w" elementId="org.eclipse.datatools.sqltools.SQLEditorScope" bindingContext="__LQBp1J3EeaGPqoAkjgr8w">
     <bindings xmi:id="__MGWNlJ3EeaGPqoAkjgr8w" keySequence="ALT+COMMAND+D" command="__LBYNVJ3EeaGPqoAkjgr8w"/>
@@ -1219,7 +1220,7 @@
     <bindings xmi:id="__MeJpVJ3EeaGPqoAkjgr8w" keySequence="F1" command="__K8ftFJ3EeaGPqoAkjgr8w"/>
   </bindingTables>
   <bindingTables xmi:id="__M5nclJ3EeaGPqoAkjgr8w" contributorURI="platform:/fragment/org.eclipse.e4.ui.workbench.renderers.swt.cocoa" bindingContext="__KUNh1J3EeaGPqoAkjgr8w">
-    <bindings xmi:id="__M5nc1J3EeaGPqoAkjgr8w" keySequence="M1+W" command="__M5ncFJ3EeaGPqoAkjgr8w"/>
+    <bindings xmi:id="_FzrrEFQhEea4gqDGq7BKrQ" keySequence="M1+W" command="__M5ncFJ3EeaGPqoAkjgr8w"/>
   </bindingTables>
   <bindingTables xmi:id="_AAiq4VJ4EeaGPqoAkjgr8w" bindingContext="_AAiq4FJ4EeaGPqoAkjgr8w"/>
   <bindingTables xmi:id="_AAiq41J4EeaGPqoAkjgr8w" bindingContext="_AAiq4lJ4EeaGPqoAkjgr8w"/>
