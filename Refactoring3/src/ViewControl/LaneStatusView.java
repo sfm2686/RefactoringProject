@@ -9,8 +9,7 @@ package ViewControl;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Iterator;
-import java.util.Vector;
+import java.util.*;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -24,7 +23,7 @@ import Model.Pinsetter;
 import Model.PinsetterEvent;
 import Model.PinsetterObserver;
 
-public class LaneStatusView implements ActionListener, LaneObserver, PinsetterObserver {
+public class LaneStatusView implements ActionListener, LaneObserver, Observer {
 
 	private JPanel jp;
 
@@ -48,9 +47,14 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		laneShowing=false;
 		psShowing=false;
 
-		psv = new PinSetterView( laneNum );
 		Pinsetter ps = lane.getPinsetter();
-		ps.subscribe(psv);
+		psv = new PinSetterView( ps, laneNum );
+		ps.addObserver(this);
+		/*
+		 * REFACTORED
+		 * ps.subscribe(psv);
+		 */
+		
 
 		lv = new LaneView( lane, laneNum );
 		lane.subscribe(lv);
@@ -149,7 +153,6 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		Lane lane = le.getLane();
 		
 		if(lane.isGameFinished() && lane.isPartyAssigned()){ // Start end of game routine
-			System.out.println("MADE IT HERE");
 			EndGamePrompt egp = new EndGamePrompt( ((Bowler) le.getParty().getMembers().get(0)).getNickName() + "'s Party" );
 			int result = egp.getResult();
 			egp.distroy();
@@ -200,10 +203,20 @@ public class LaneStatusView implements ActionListener, LaneObserver, PinsetterOb
 		}
 	}
 
+	/**
+	 * REFACTORED
+	 * 
 	public void receivePinsetterEvent(PinsetterEvent pe) {
 		pinsDown.setText( ( new Integer(pe.totalPinsDown()) ).toString() );
-//		foul.setText( ( new Boolean(pe.isFoulCommited()) ).toString() );
+		foul.setText( ( new Boolean(pe.isFoulCommited()) ).toString() );
 		
+	}
+	**/
+
+	@Override
+	public void update(Observable o, Object arg) {
+		PinsetterEvent pe = (PinsetterEvent)arg;
+		pinsDown.setText( ( new Integer(pe.totalPinsDown()) ).toString() );		
 	}
 
 }

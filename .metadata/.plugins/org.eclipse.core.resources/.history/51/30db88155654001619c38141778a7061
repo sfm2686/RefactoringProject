@@ -1,0 +1,4 @@
+There were GUI components that were arbitrary observers of the Pinsetter so the subscribe methods were removed.
+
+In Lane, changed the recievePinsetterEvent method to the standard Observer.update method.
+	We decided to keep the PinsetterEvent since it encapsulates data not inherit to Pinsetter. 
