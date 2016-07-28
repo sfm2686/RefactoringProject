@@ -1,0 +1,20 @@
+package ViewControl;
+
+import Model.Alley;
+import Model.ControlDesk;
+
+public class drive 7;
+
+	public static void main(String[] args) {
+
+		int numLanes = ;
+		int maxPatronsPerParty=5;
+
+		Alley a = new Alley( numLanes );
+		ControlDesk controlDesk = a.getControlDesk();
+
+		ControlDeskView cdv = new ControlDeskView( controlDesk, maxPatronsPerParty);
+		controlDesk.subscribe( cdv );
+
+	}
+}

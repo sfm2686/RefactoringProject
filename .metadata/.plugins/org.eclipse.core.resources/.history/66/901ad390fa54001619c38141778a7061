@@ -25,13 +25,16 @@ public class Lane extends Observable implements Observer, Runnable {
 	private int gameNumber;
 	private Bowler currentThrower;			// = the thrower who just took a throw
 	
+	// REFACTORED
+	private Thread thread;
+	
 	
 	/** Lane()
 	 * 
 	 * Constructs a new lane and starts its thread
 	 * 
 	 * @pre none
-	 * @post a new lane has been created and its thread is executing
+	 * @post a new lane has been created and its thered is executing
 	 */
 	public Lane() { 
 		
@@ -49,10 +52,8 @@ public class Lane extends Observable implements Observer, Runnable {
 		partyAssigned = false;
 
 		gameNumber = 0;
-		
-		// REFACTORED
-		// this.start();
-		(new Thread(this, "Lane Thread")).start();
+		this.thread = new Thread(this, "Lane Thread");
+		this.thread.start();
 	}
 
 
@@ -231,7 +232,7 @@ public class Lane extends Observable implements Observer, Runnable {
 		
 		curScores = new int[party.getMembers().size()];
 		cumulScores = new int[party.getMembers().size()][10];
-		finalScores = new int[party.getMembers().size()][128]; // Hardcoding a max of 128 games, bite me. YOOO HAWKER THIS WAS HERE WAY BEFORE I FOUND IT
+		finalScores = new int[party.getMembers().size()][128]; //Hardcoding a max of 128 games, bite me.
 		gameNumber = 0;
 		
 		resetScores();

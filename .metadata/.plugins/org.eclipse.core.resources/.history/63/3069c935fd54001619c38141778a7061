@@ -231,7 +231,8 @@ public class Lane extends Observable implements Observer, Runnable {
 		
 		curScores = new int[party.getMembers().size()];
 		cumulScores = new int[party.getMembers().size()][10];
-		finalScores = new int[party.getMembers().size()][128]; // Hardcoding a max of 128 games, bite me. YOOO HAWKER THIS WAS HERE WAY BEFORE I FOUND IT
+		finalScores = new int[party.getMembers().size()][128]; // Hardcoding a max of 128 games, bite me.
+																// YOOO HAWKER THIS WAS HERE WAYYYYYY BEFORE I FOUND IT
 		gameNumber = 0;
 		
 		resetScores();
@@ -259,16 +260,21 @@ public class Lane extends Observable implements Observer, Runnable {
 		publish( lanePublish() );
 	}
 
-	/** lanePublish()
+	/*
+	 * REFACTORED
+	 *  
+	 *  lanePublish()
 	 *
 	 * Method that creates and returns a newly created laneEvent
 	 * 
 	 * @return		The new lane event
-	 */
+	 *
 	private LaneEvent lanePublish(  ) {
 		LaneEvent laneEvent = new LaneEvent(this, party, bowlIndex, currentThrower, cumulScores, scores, frameNumber+1, curScores, ball, gameIsHalted);
 		return laneEvent;
 	}
+	
+	*/
 
 	/** getScore()
 	 *
@@ -411,16 +417,21 @@ public class Lane extends Observable implements Observer, Runnable {
 		return gameFinished;
 	}
 
-	/** subscribe
+	/** 
+	 * REFACTORED
+	 * 
+	 * subscribe
 	 * 
 	 * Method that will add a subscriber
 	 * 
 	 * @param subscribe	Observer that is to be added
-	 */
+	 *
 
 	public void subscribe( LaneObserver adding ) {
 		subscribers.add( adding );
 	}
+	
+	*/
 
 	/** unsubscribe
 	 * 
