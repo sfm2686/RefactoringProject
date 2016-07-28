@@ -217,4 +217,5 @@ public class LaneStatusView implements ActionListener, LaneObserver, Observer {
 		PinsetterEvent pe = (PinsetterEvent)arg;
 		pinsDown.setText( ( new Integer(pe.totalPinsDown()) ).toString() );		
 	}
+
 }

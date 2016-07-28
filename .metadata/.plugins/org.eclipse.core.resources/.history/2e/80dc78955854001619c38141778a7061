@@ -8,6 +8,8 @@ package Model;
  *
  *   Revision 1.1  2003/01/19 22:12:40  ???
  *   created laneevent and laneobserver
+ *
+ *
  */
 
 public interface LaneObserver {
