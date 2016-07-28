@@ -2,7 +2,7 @@ package Model;
 
 import java.util.*;
 
-public class Lane extends Thread implements Observer {	
+public class Lane extends Observable implements Observer, Runnable {	
 
 	private Party party;
 	private Pinsetter setter;
@@ -24,13 +24,14 @@ public class Lane extends Thread implements Observer {
 	private int[][] finalScores;
 	private int gameNumber;
 	private Bowler currentThrower;			// = the thrower who just took a throw
-
+	
+	
 	/** Lane()
 	 * 
 	 * Constructs a new lane and starts its thread
 	 * 
 	 * @pre none
-	 * @post a new lane has been created and its thered is executing
+	 * @post a new lane has been created and its thread is executing
 	 */
 	public Lane() { 
 		
@@ -48,11 +49,12 @@ public class Lane extends Thread implements Observer {
 		partyAssigned = false;
 
 		gameNumber = 0;
-
-
 		
-		this.start();
+		// REFACTORED
+		// this.start();
+		(new Thread(this, "Lane Thread")).start();
 	}
+
 
 	/** run()
 	 * 
@@ -66,7 +68,11 @@ public class Lane extends Thread implements Observer {
 			
 				while (gameIsHalted) {
 					try {
-						sleep(10);
+						/*
+						 * REFACTORED
+						 * sleep(10);
+						 */
+						Thread.sleep(10);
 					} catch (Exception e) {}
 				}
 
@@ -109,7 +115,11 @@ public class Lane extends Thread implements Observer {
 				publish(lanePublish());
 			}			
 			try {
-				sleep(10);
+				/*
+				 * REFACTORED
+				 * sleep(10);
+				 */
+				Thread.sleep(10);
 			} catch (Exception e) {}
 		}
 	}
