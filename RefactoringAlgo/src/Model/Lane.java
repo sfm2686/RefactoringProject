@@ -326,7 +326,19 @@ public class Lane extends Thread implements PinsetterObserver {
 				//This ball was a the second of a spare.  
 				//Also, we're not on the current ball.
 				//Add the next ball to the ith one in cumul.
-				cumulScores[bowlIndex][(i/2)] += curScore[i+1] + curScore[i]; 
+				
+				//cumulScores[bowlIndex][(i/2)] += curScore[i+1] + curScore[i];
+				/*
+				 * REFACTORING
+				 * Replaced the line above with the condition below
+				 */
+				if ( i > 1 )
+					cumulScores[bowlIndex][(i/2)] += curScore[i] + curScore[i + 1];
+				else if ( curScore[i + 1] >= 0 )
+					cumulScores[bowlIndex][(i/2)] += curScore[i];
+				else
+					cumulScores[bowlIndex][(i/2)] += curScore[i] + curScore[i + 1];
+				
 				if (i > 1) {
 					//cumulScores[bowlIndex][i/2] += cumulScores[bowlIndex][i/2 -1];
 				}
@@ -349,13 +361,27 @@ public class Lane extends Thread implements PinsetterObserver {
 					//Add the next two balls to the current cumulscore.
 					cumulScores[bowlIndex][i/2] += 10;
 					if(curScore[i+1] != -1) {
-						cumulScores[bowlIndex][i/2] += curScore[i+1] + cumulScores[bowlIndex][(i/2)-1];
+						
+						//cumulScores[bowlIndex][i/2] += curScore[i] + cumulScores[bowlIndex][(i/2)-1];
+						/*
+						 * REFACTORED
+						 * REPLACED THE LINE ABOVE WITH THE LINE BELOW
+						 */
+						cumulScores[bowlIndex][i/2] += curScore[i];
+						
 						if (curScore[i+2] != -1){
-							if( curScore[i+2] != -2){
+							
+							/*
+							 * REFACTORING
+							 * 
+							 * REPLACED CONDITIONS ( curScore[i+2] != -2 )
+							 * WITH ( curScore[i+2] >= 0 )
+							 */
+							if( curScore[i+2] >= 0 ){
 								cumulScores[bowlIndex][(i/2)] += curScore[i+2];
 							}
 						} else {
-							if( curScore[i+3] != -2){
+							if( curScore[i+3] >= 0){
 								cumulScores[bowlIndex][(i/2)] += curScore[i+3];
 							}
 						}
@@ -376,13 +402,19 @@ public class Lane extends Thread implements PinsetterObserver {
 				} else {
 					break;
 				}
-			}else { 
+			}else {
 				//We're dealing with a normal throw, add it and be on our way.
 				if( i%2 == 0 && i < 18){
 					if ( i/2 == 0 ) {
 						//First frame, first ball.  Set his cumul score to the first ball
-						if(curScore[i] != -2){	
-							cumulScores[bowlIndex][i/2] += curScore[i];
+						if(curScore[i] != -2){
+							
+							//cumulScores[bowlIndex][i/2] += curScore[i];
+							/*
+							 * REFACTORING
+							 * REPLACED THE LINE ABOVE WITH THE LINE BELOW
+							 */
+							cumulScores[bowlIndex][i/2] += curScore[i] + curScore[i + 1];
 						}
 					} else if (i/2 != 9){
 						//add his last frame's cumul to this ball, make it this frame's cumul.
@@ -392,7 +424,7 @@ public class Lane extends Thread implements PinsetterObserver {
 							cumulScores[bowlIndex][i/2] += cumulScores[bowlIndex][i/2 - 1];
 						}	
 					}
-				} else if (i < 18){ 
+				} else if (i < 18){
 					if(curScore[i] != -1 && i > 2){
 						if(curScore[i] != -2){
 							cumulScores[bowlIndex][i/2] += curScore[i];
