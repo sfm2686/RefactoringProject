@@ -17,12 +17,10 @@ import javax.swing.event.*;
 
 import Model.Bowler;
 import Model.Lane;
-import Model.LaneEvent;
-import Model.LaneObserver;
 import Model.Pinsetter;
 import Model.PinsetterEvent;
 
-public class LaneStatusView implements ActionListener, LaneObserver, Observer {
+public class LaneStatusView implements ActionListener, Observer {
 
 	private JPanel jp;
 
@@ -56,7 +54,12 @@ public class LaneStatusView implements ActionListener, LaneObserver, Observer {
 		
 
 		lv = new LaneView( lane, laneNum );
-		lane.subscribe(lv);
+		/*
+		 * REFACTORED
+		 * 
+		 * lane.subscribe(lv);
+		 */
+		lane.addObserver(lv);
 
 
 		jp = new JPanel();
@@ -148,6 +151,12 @@ public class LaneStatusView implements ActionListener, LaneObserver, Observer {
 		}
 	}
 
+	
+	/*
+	 * REFACTORED
+	 * Migrated to the update method.
+	 * 
+	 * 
 	public void receiveLaneEvent(LaneEvent le) {
 		Lane lane = le.getLane();
 		
@@ -185,10 +194,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, Observer {
 
 				}
 			}
-		}
-
-			
-			
+		}			
 		curBowler.setText( ( (Bowler)le.getBowler()).getNickName() );
 		if ( le.isMechanicalProblem() ) {
 			maintenance.setBackground( Color.RED );
@@ -201,6 +207,7 @@ public class LaneStatusView implements ActionListener, LaneObserver, Observer {
 			viewPinSetter.setEnabled( true );
 		}
 	}
+	*/
 
 	/**
 	 * REFACTORED
@@ -214,7 +221,63 @@ public class LaneStatusView implements ActionListener, LaneObserver, Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		PinsetterEvent pe = (PinsetterEvent)arg;
-		pinsDown.setText( ( new Integer(pe.totalPinsDown()) ).toString() );		
-	}
+		
+		if(o instanceof Pinsetter){
+			PinsetterEvent pe = (PinsetterEvent)arg;
+			pinsDown.setText( ( new Integer(pe.totalPinsDown()) ).toString() );
+		}
+		else if(o instanceof Lane){
+			Lane le = (Lane)o;
+			
+			if(lane.isGameFinished() && lane.isPartyAssigned()){ // Start end of game routine
+				EndGamePrompt egp = new EndGamePrompt( ((Bowler) le.getParty().getMembers().get(0)).getNickName() + "'s Party" );
+				int result = egp.getResult();
+				egp.distroy();
+				egp = null;
+				
+				System.out.println("result was: " + result);
+				
+				if (result == 1) {					// yes, want to play again
+					lane.resetScores();
+					lane.resetBowlerIterator();
+				}
+				else if (result == 2) {// no, dont want to play another game
+					Vector printVector;	
+					EndGameReport egr = new EndGameReport( ((Bowler)le.getParty().getMembers().get(0)).getNickName() + "'s Party", le.getParty());
+					printVector = egr.getResult();
+					Iterator scoreIt = le.getParty().getMembers().iterator();
+					lane.clearLane();
+					
+					int myIndex = 0;
+					while (scoreIt.hasNext()){
+						Bowler thisBowler = (Bowler)scoreIt.next();
+						ScoreReport sr = new ScoreReport( thisBowler, lane.getFinalScores()[myIndex++], lane.getGameNumber() );
+						sr.sendEmail(thisBowler.getEmail());
+						Iterator printIt = printVector.iterator();
+						while (printIt.hasNext()){
+							if (thisBowler.getNick() == (String)printIt.next()){
+								System.out.println("Printing " + thisBowler.getNick());
+								sr.sendPrintout();
+							}
+						}
+
+					}
+				}
+			}
+
+				
+				
+			curBowler.setText(le.getCurrentThrower().getNickName());
+			if ( le.isGameIsHalted() ) {
+				maintenance.setBackground( Color.RED );
+			}	
+			if ( lane.isPartyAssigned() == false ) {
+				viewLane.setEnabled( false );
+				viewPinSetter.setEnabled( false );
+			} else {
+				viewLane.setEnabled( true );
+				viewPinSetter.setEnabled( true );
+			}
+		}
+	}	
 }

@@ -1,0 +1,5 @@
+package Model;
+public interface LaneServers extends java.rmi.Remote {
+	public void subscribe(LaneObserver toAdd) throws java.rmi.RemoteException;
+};
+

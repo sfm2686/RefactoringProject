@@ -112,7 +112,9 @@ public class Lane extends Observable implements Observer, Runnable {
 				}
 			}
 			else if (partyAssigned && gameFinished) {
-				publish(lanePublish());
+				// REFACTORED
+				//publish(lanePublish());
+				publish();
 			}
 			try {
 				/*
@@ -256,7 +258,9 @@ public class Lane extends Observable implements Observer, Runnable {
 		curScore[ index - 1] = score;
 		scores.put(Cur, curScore);
 		getScore( Cur, frame );
-		publish( lanePublish() );
+		// REFACTORED
+		//publish(lanePublish());
+		publish();
 	}
 
 	/*
@@ -423,33 +427,46 @@ public class Lane extends Observable implements Observer, Runnable {
 		return gameFinished;
 	}
 
-	/** subscribe
+	/** 
+	 * REFACTORED 
+	 * This is now achieved with addObserver calls
+	 * 
+	 * subscribe
 	 *
 	 * Method that will add a subscriber
 	 *
 	 * @param subscribe	Observer that is to be added
-	 */
+	 *
 
 	public void subscribe( LaneObserver adding ) {
 		subscribers.add( adding );
 	}
+	*/
 
-	/** unsubscribe
+	/** 
+	 * REFACTORED 
+	 * 
+	 * Obsolete code
+	 * 
+	 * unsubscribe
 	 *
 	 * Method that unsubscribes an observer from this object
 	 *
 	 * @param removing	The observer to be removed
-	 */
+	 *
 
 	public void unsubscribe( LaneObserver removing ) {
 		subscribers.remove( removing );
 	}
+
+	*/
 
 	/*
 
 		REFACTORED
 
 		THIS METHOD IS NOW OBSOLETE
+
 
 		
 	 * publish
@@ -470,13 +487,20 @@ public class Lane extends Observable implements Observer, Runnable {
 	}
 	*/
 
+	// REFACTORED
+	// REPLACED OLD publish METHOD WITH THIS ONE
+	public void publish(){
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 
 	/**
 	 * Pause the execution of this game
 	 */
 	public void pauseGame() {
 		gameIsHalted = true;
-		publish(lanePublish());
+		publish();
 	}
 
 	/**
@@ -484,7 +508,9 @@ public class Lane extends Observable implements Observer, Runnable {
 	 */
 	public void unPauseGame() {
 		gameIsHalted = false;
-		publish(lanePublish());
+		// REFACTORED
+		//publish(lanePublish());
+		publish();
 	}
 
 
