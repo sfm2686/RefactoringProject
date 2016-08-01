@@ -87,9 +87,9 @@ public class Lane extends Thread implements PinsetterObserver {
 					if (frameNumber == 9){
 						finalScores[bowlIndex][gameNumber] = cumulScores[bowlIndex][9];
 						try{
-							Date date = new Date();
-							String dateString = "" + date.getHours() + ":" + date.getMinutes() + " " + date.getMonth() + "/" + date.getDay() + "/" + (date.getYear() + 1900);
-							ScoreHistoryFile.addScore(currentThrower.getNick(), dateString, new Integer(cumulScores[bowlIndex][9]).toString());
+						Date date = new Date();
+						String dateString = "" + date.getHours() + ":" + date.getMinutes() + " " + date.getMonth() + "/" + date.getDay() + "/" + (date.getYear() + 1900);
+						ScoreHistoryFile.addScore(currentThrower.getNick(), dateString, new Integer(cumulScores[bowlIndex][9]).toString());
 						} catch (Exception e) {System.err.println("Exception in addScore. "+ e );} 
 					}
 
@@ -172,8 +172,7 @@ public class Lane extends Thread implements PinsetterObserver {
 	 * 
 	 * @param pe 		The pinsetter event that has been received.
 	 */
-	public void receivePinsetterEvent(PinsetterEvent pe) { // 
- Update in Observer/Observable 
+	public void receivePinsetterEvent(PinsetterEvent pe) { // REFACTORING Update in Observer/Observable 
 		
 			if (pe.pinsDownOnThisThrow() >=  0) {			// this is a real throw
 				markScore(currentThrower, frameNumber + 1, pe.getThrowNumber(), pe.pinsDownOnThisThrow());
@@ -333,7 +332,9 @@ public class Lane extends Thread implements PinsetterObserver {
 				 * REFACTORING
 				 * Replaced the line above with the condition below
 				 */
-				if ( i > 1 || curScore[i + 1] >= 0 )
+				if ( i > 1 )
+					cumulScores[bowlIndex][(i/2)] += curScore[i] + curScore[i + 1];
+				else if ( curScore[i + 1] >= 0 )
 					cumulScores[bowlIndex][(i/2)] += curScore[i] + curScore[i + 1];
 				else
 					cumulScores[bowlIndex][(i/2)] += curScore[i];
@@ -379,9 +380,7 @@ public class Lane extends Thread implements PinsetterObserver {
 							if( curScore[i+2] >= 0 ){
 								cumulScores[bowlIndex][(i/2)] += curScore[i+2];
 							}
-						} 
-						else 
-						{
+						} else {
 							if( curScore[i+3] >= 0){
 								cumulScores[bowlIndex][(i/2)] += curScore[i+3];
 							}
