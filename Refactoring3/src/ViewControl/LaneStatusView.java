@@ -89,7 +89,7 @@ public class LaneStatusView implements ActionListener, Observer {
 		viewPinSetter.addActionListener(this);
 		viewPinSetterPanel.add(viewPinSetter);
 
-		maintenance = new JButton("Unpause Game");
+		maintenance = new JButton("Maintenance Call");
 		maintenance.setBackground(Color.GREEN);
 		maintenance.setOpaque(true);
 		JPanel maintenancePanel = new JPanel();
@@ -144,9 +144,13 @@ public class LaneStatusView implements ActionListener, Observer {
 			}
 		}
 		if (e.getSource().equals(maintenance)) {
-			if ( lane.isPartyAssigned() ) {
+			if ( lane.isGameIsHalted() ) {
 				lane.unPauseGame();
 				maintenance.setBackground( Color.GREEN );
+			}
+			else{
+				lane.pauseGame();
+				maintenance.setBackground( Color.RED );
 			}
 		}
 	}

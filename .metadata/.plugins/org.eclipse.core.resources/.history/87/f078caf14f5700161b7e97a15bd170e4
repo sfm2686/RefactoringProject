@@ -1,0 +1,5 @@
+Found 3 main problems in the score calculation algorthim.
+
+case 1) When the first frame contains 2 normal numbers: fixed
+case 2) When the first frame contains a strike("X")   : fixed
+case 3) When the first frame contains a spare("/")    :

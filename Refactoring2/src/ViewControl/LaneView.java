@@ -197,11 +197,13 @@ public class LaneView implements LaneObserver, ActionListener {
 						else if ( ((int[])((HashMap) le.getScore()).get(bowlers.get(k)))[i] == -2 ){
 							
 							ballLabel[k][i].setText("F");
-						} else
+						} 
+						else{
 							ballLabel[k][i].setText(
 								(new Integer(((int[]) ((HashMap) le.getScore())
 									.get(bowlers.get(k)))[i]))
 									.toString());
+						}
 				}
 			}
 

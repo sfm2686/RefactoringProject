@@ -17,7 +17,7 @@ import java.util.*;
 public class LaneView implements ActionListener, Observer {
 
 	private int roll;
-	private boolean initDone = true;
+	private boolean initDone = false;
 
 	JFrame frame;
 	Container cpanel;
@@ -39,7 +39,8 @@ public class LaneView implements ActionListener, Observer {
 
 		this.lane = lane;
 
-		initDone = true;
+// 		REFACTORED
+//		initDone = true;
 		frame = new JFrame("Lane " + laneNum + ":");
 		cpanel = frame.getContentPane();
 		cpanel.setLayout(new BorderLayout());
@@ -49,9 +50,7 @@ public class LaneView implements ActionListener, Observer {
 				frame.hide();
 			}
 		});
-
 		cpanel.add(new JPanel());
-
 	}
 
 	public void show() {
@@ -63,8 +62,6 @@ public class LaneView implements ActionListener, Observer {
 	}
 
 	private JPanel makeFrame(Party party) {
-
-		initDone = false;
 		bowlers = party.getMembers();
 		int numBowlers = bowlers.size();
 
@@ -223,20 +220,30 @@ public class LaneView implements ActionListener, Observer {
 		Lane le = (Lane)o;
 
 		if (lane.isPartyAssigned() && !lane.isGameFinished()) {
+			
+			if(!initDone){
+				cpanel.removeAll();
+				cpanel.add(makeFrame(le.getParty()), "Center");
+			}
+			
 			int numBowlers = le.getParty().getMembers().size();
+			
+			/*
+			 * REFACTORED
+			 * 
 			while (!initDone) {
 				try {
 					Thread.sleep(1);
 				} catch (Exception e) {}
 			}
-
-			if (le.getFrameNumber() == 1
-					&& le.getBall() == 0
-					&& le.getBowlIndex() == 0) {
+			*/
+			
+			// REFACTORED
+			//if (le.getFrameNumber() == 1 && le.getBall() == 0 && le.getBowlIndex() == 0) {
+			if (le.getFrameNumber() == 0 && le.getBall() == 0 && le.getBowlIndex() == 0) {
 				System.out.println("Making the frame.");
 				cpanel.removeAll();
 				cpanel.add(makeFrame(le.getParty()), "Center");
-
 				// Button Panel
 				JPanel buttonPanel = new JPanel();
 				buttonPanel.setLayout(new FlowLayout());
@@ -254,10 +261,10 @@ public class LaneView implements ActionListener, Observer {
 				cpanel.add(buttonPanel, "South");
 
 				frame.pack();
+				cpanel.setVisible(true);
+
 
 			}
-
-			// TODO: FIX THIS STUPID SHIT
 			
 			int[][] lescores = le.getCumulScores();
 			HashMap scores = le.getScores();
@@ -272,7 +279,7 @@ public class LaneView implements ActionListener, Observer {
 					if (((int[]) (scores.get(bowlers.get(k))))[i] != -1){
 						if (((int[]) scores.get(bowlers.get(k)))[i] == 10 && (i % 2 == 0 || i == 19)){
 							ballLabel[k][i].setText("X");
-						}
+						}					
 						else if (i > 0 && ((int[]) scores.get(bowlers.get(k)))[i] + ((int[]) scores.get(bowlers.get(k)))[i - 1] == 10 && i % 2 == 1){
 							ballLabel[k][i].setText("/");
 						}
@@ -280,11 +287,16 @@ public class LaneView implements ActionListener, Observer {
 							ballLabel[k][i].setText("F");
 						} 
 						else{
+
 							ballLabel[k][i].setText((new Integer(((int[]) scores.get(bowlers.get(k)))[i])).toString());
 						}
 					}
 				}
 			}
+		}
+		// REFACTORED
+		else{
+			initDone = false;
 		}
 	}
 }
