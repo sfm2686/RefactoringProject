@@ -1,36 +1,7 @@
-There were GUI components that were arbitrary observers of the Pinsetter so the subscribe methods were removed.
+Merged the progress from Refactoring3 and RefactoringAlgo together.
 
-In Lane, got rid of the recievePinsetterEvent method and added the standard Observer.update method.
-	We decided to keep the PinsetterEvent since it encapsulates data not inherit to Pinsetter. 
-	
-Changed the constructor of the PinSetterView.java class to accept a Pinsetter so that is has
-the responsibility of adding itself as an observer.
+Added a publish() call in Lane once it is determine the game is finished. This allows the GUI to finalize the score display one last time.
 
-Removed the PinsetterObserver class.
+In Lane, removed the unused getters.
 
-Replaced the extend Thread call in Lane to an implements Runnable. Then in the constructor
-we created a new thread object, passing itself (as a Runnable object) as a parameter), 
-and then started it. This effectively allows for us to extend the Observable class in Lane
-now.
-
-Deleted the redundant lanePublish() method within Lane.java.
-Replaced the publish() method with the proper Observable notify operations within Lane.java.
-
-Removed the implements LaneObserver class in the GUI elements, replaced with implements Observer.
-Changed the logic for adding an Observer to Lane's list of observers to be in line with the java implementation in the appropriate GUI classes.
-
-Removed the LaneObserver interface as it now not used.
-Removed the LaneServer interface as it was not used originally and does not add any value to the project by keeping it in the directory.
-
-Removed the LaneEvent imports in the GUI.
-
-Fixed the issues with migrating the receiveLaneEvent code to the update method in LaneStatusView.java.
-
-Fixed the issues with migrating the receiveLaneEvent code to the update method in LaneView.java.
-
-Removed the now obsolete LaneEvent.
-Removed the now obsolete LaneEventInterface
-
-Fixed minor problems with the maintenance button.
-
-Fixed all of the bugs in the LaneView update method.
+Added the ScoreCalculator class and migrated all of the getScore functionality originally belonging to main into that class. 
