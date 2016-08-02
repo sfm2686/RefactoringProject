@@ -1,23 +1,16 @@
 package ViewControl;
 
-/**
- * Class for GUI components need to add a patron
- *
- */
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
-import javax.swing.event.*;
 
-import java.util.*;
-import java.text.*;
-
+/**
+ * Class for GUI components need to add a patron
+ *
+ */
 public class NewPatronView implements ActionListener {
-
-	private int maxSize;
-
+	
 	private JFrame win;
 	private JButton abort, finished;
 	private JLabel nickLabel, fullLabel, emailLabel;
@@ -26,14 +19,13 @@ public class NewPatronView implements ActionListener {
 
 	private boolean done;
 
-	private String selectedNick, selectedMember;
 	private AddPartyView addParty;
 
 	public NewPatronView(AddPartyView v) {
 
-		addParty=v;	
+		addParty = v;	
 		done = false;
-
+		
 		win = new JFrame("Add Patron");
 		win.getContentPane().setLayout(new BorderLayout());
 		((JPanel) win.getContentPane()).setOpaque(false);

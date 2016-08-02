@@ -10,24 +10,16 @@ package ViewControl;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-
-import java.util.*;
-import java.text.*;
 
 public class EndGamePrompt implements ActionListener {
 
 	private JFrame win;
 	private JButton yesButton, noButton;
-
 	private int result;
-
-	private String selectedNick, selectedMember;
-
+	
+	
 	public EndGamePrompt( String partyName ) {
-
-		result =0;
+		result = 0;
 		
 		win = new JFrame("Another Game for " + partyName + "?" );
 		win.getContentPane().setLayout(new BorderLayout());
@@ -48,8 +40,6 @@ public class EndGamePrompt implements ActionListener {
 		// Button Panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1, 2));
-
-		Insets buttonMargin = new Insets(4, 4, 4, 4);
 
 		yesButton = new JButton("Yes");
 		JPanel yesButtonPanel = new JPanel();
@@ -90,7 +80,6 @@ public class EndGamePrompt implements ActionListener {
 		if (e.getSource().equals(noButton)) {		
 			result=2;
 		}
-
 	}
 
 	public int getResult() {
@@ -107,6 +96,4 @@ public class EndGamePrompt implements ActionListener {
 	public void distroy() {
 		win.hide();
 	}
-	
 }
-

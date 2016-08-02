@@ -55,7 +55,7 @@ public class ScoreCalculator {
 	
 	private int strike(int index, int[] currentScores){
 		if(index > 17){
-			return (0);
+			return (10);
 		}
 		int count = 0;
 		int scoreSum = 10; // Start at ten since it was a strike
@@ -70,7 +70,7 @@ public class ScoreCalculator {
 	
 	private int spare(int index, int[] currentScores){
 		if(index > 17){
-			return (0);
+			return (10);
 		}
 		int count = 0;
 		int scoreSum = 10; // Start at ten since it was a strike

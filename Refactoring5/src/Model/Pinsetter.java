@@ -1,6 +1,5 @@
 package Model;
 
-
 /**
  * Class to represent the pinsetter
  *
@@ -11,15 +10,9 @@ import java.lang.Boolean;
 
 public class Pinsetter extends Observable {
 
-	
-
 	private Random rnd;
-	
-	/*
-	 * REFACTORED
-	 * 	private Vector subscribers;
-	 */
-
+	private boolean foul;
+	private int throwNumber;
 	private boolean[] pins; 
 			/* 0-9 of state of pine, true for standing, 
 			false for knocked down
@@ -30,8 +23,7 @@ public class Pinsetter extends Observable {
 			      0
 
 			*/
-	private boolean foul;
-	private int throwNumber;
+
 
 	/** sendEvent()
 	 * 
@@ -41,16 +33,6 @@ public class Pinsetter extends Observable {
 	 * @post all subscribers have recieved pinsetter event with updated state
 	 * */
 	private void sendEvent(int jdpins) {	// send events when our state is changd 
-		/*
-		 * REFACTORED
-		 * 
-		 * 		for (int i=0; i < subscribers.size(); i++) 
-		 * 		{
-		 *			((PinsetterObserver)subscribers.get(i)).receivePinsetterEvent(
-		 *				new PinsetterEvent(pins, foul, throwNumber, jdpins));
-		 *		}
-		 *
-		**/
 		this.setChanged();
 		this.notifyObservers(new PinsetterEvent(pins, foul, throwNumber, jdpins));
 		
@@ -67,10 +49,6 @@ public class Pinsetter extends Observable {
 	public Pinsetter() {
 		pins = new boolean[10];
 		rnd = new Random();
-		/*
-		 * 	REFACTORED
-		 * 		subscribers = new Vector();
-		 */
 		foul = false;
 		reset();
 	}
@@ -104,9 +82,7 @@ public class Pinsetter extends Observable {
 		try {
 			Thread.sleep(500);				// pinsetter is where delay will be in a real game
 		} catch (Exception e) {}
-
 		sendEvent(count);
-
 		throwNumber++;
 	}
 
@@ -121,7 +97,6 @@ public class Pinsetter extends Observable {
 		foul = false;
 		throwNumber = 1;
 		resetPins();
-		
 		try {
 			Thread.sleep(1000);
 		} catch (Exception e) {}
@@ -141,22 +116,6 @@ public class Pinsetter extends Observable {
 			pins[i] = true;
 		}
 	}		
-
-	/**
-	 * 	   REFACTORED
-	 * 	   Redundant do to this class now being Observable
-	 * 
-	 * 	   subscribe()
-	 * 
-	 *     subscribe objects to send events to
-	 * 
-	 * 	   @pre none
-	 *     @post the subscriber object will recieve events when their generated
-	 *
-	 *	   public void subscribe(PinsetterObserver subscriber) {
-	 *	   	   subscribers.add(subscriber);
-	 *	   }
-	 */
 	
 	/**
 	 * @return the rnd
@@ -164,16 +123,6 @@ public class Pinsetter extends Observable {
 	public Random getRnd() {
 		return rnd;
 	}
-
-	/**
-	 * REFACTORED
-	 * 
-	 * @return the subscribers
-	 *
-	 *	public Vector getSubscribers() {
-	 *		return subscribers;
-	 *	}
-	 **/
 
 	/**
 	 * @return the pins

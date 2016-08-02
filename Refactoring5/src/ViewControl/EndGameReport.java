@@ -1,39 +1,27 @@
 package ViewControl;
-/**
- *
- * To change this generated comment edit the template variable "typecomment":
- * Window>Preferences>Java>Templates.
- * To enable and disable the creation of type comments go to
- * Window>Preferences>Java>Code Generation.
- */
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
-
 import Model.Bowler;
 import Model.Party;
-
 import java.util.*;
-import java.text.*;
 
 public class EndGameReport implements ActionListener, ListSelectionListener {
 
 	private JFrame win;
 	private JButton printButton, finished;
 	private JList memberList;
-	private Vector myVector;
 	private Vector retVal;
-
 	private int result;
 
 	private String selectedMember;
 
 	public EndGameReport( String partyName, Party party ) {
 	
-		result =0;
+		result = 0;
 		retVal = new Vector();
 		win = new JFrame("End Game Report for " + partyName + "?" );
 		win.getContentPane().setLayout(new BorderLayout());
@@ -57,7 +45,6 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 		memberList.setVisibleRowCount(5);
 		memberList.addListSelectionListener(this);
 		JScrollPane partyPane = new JScrollPane(memberList);
-		//        partyPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		partyPanel.add(partyPane);
 
 		partyPanel.add( memberList );
@@ -110,7 +97,6 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 			win.hide();
 			result = 1;
 		}
-
 	}
 
 	public void valueChanged(ListSelectionEvent e) {
@@ -141,7 +127,5 @@ public class EndGameReport implements ActionListener, ListSelectionListener {
 		Party party = new Party( bowlers );
 		String partyName="wank";
 		EndGameReport e = new EndGameReport( partyName, party );
-	}
-	
+	}	
 }
-

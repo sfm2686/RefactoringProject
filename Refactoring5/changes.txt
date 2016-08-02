@@ -2,3 +2,12 @@ Rid every file of redundant code, or code that was commented out during the prev
 
 Removed the redundant alley class. Instead, drive simply creates the ControlDesk directly and an entire class is able to be removed.
 	These changes are clear in drive.java.
+	
+Moved the drive.java file outside of the ViewControl 
+
+Decided to fix the ControLDesk Observer/Observable pattern as well, for consistency.
+	Removed the ControlDeskEvent.java file, now just passing the ControlDesk itself to Observers.
+	Changed ControlDesk from extending Thread to extending Observable, and it now implements Runnable.
+	Added Observer implementation to ControlDeskView.
+	Removed ControlDeskObserver.java file.
+	Built-in Observer pattern now used completely throughout project, no customized nonsense.  

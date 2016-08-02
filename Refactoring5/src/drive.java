@@ -5,7 +5,7 @@ import ViewControl.ControlDeskView;
  * drive serves as the startup file for the application.
  * 
  * Refactored by Hunter Caskey & Sultan Mira 
- *
+ * 
  */
 public class drive {
 
@@ -17,6 +17,6 @@ public class drive {
 		// Create a control desk and run the GUI
 		ControlDesk controlDesk = new ControlDesk(NUM_LANES);
 		ControlDeskView cdv = new ControlDeskView( controlDesk, MAX_PATRONS_PER_ALLEY);
-		controlDesk.subscribe( cdv );
+		controlDesk.addObserver(cdv);
 	}
 }

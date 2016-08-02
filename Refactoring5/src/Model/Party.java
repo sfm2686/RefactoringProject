@@ -1,6 +1,5 @@
 package Model;
 
-
 /**
  *  Container that holds bowlers
  *
@@ -18,7 +17,6 @@ public class Party {
 	 * 
 	 * @param bowlers	Vector of bowlers that are in this party
 	 */
-		
     public Party( Vector bowlers ) {
 		myBowlers = new Vector(bowlers);
     }
@@ -28,7 +26,6 @@ public class Party {
 	 * 
 	 * @return 	A vector of the bowlers in this party
 	 */
-
     public Vector getMembers() {
 		return myBowlers;
     }
