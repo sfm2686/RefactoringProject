@@ -1,0 +1,4 @@
+Rid every file of redundant code, or code that was commented out during the previous refactoring steps.
+
+Removed the redundant alley class. Instead, drive simply creates the ControlDesk directly and an entire class is able to be removed.
+	These changes are clear in drive.java.
