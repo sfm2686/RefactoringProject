@@ -1,7 +1,0 @@
-Changed the class visibility of BowlerFile.java and ControlDesk.java so that the 
-GUI components would have access to them being from a different package.
-
-Moved all of the View/Control elements of the program to a new ViewControl package.
-Moved all of the Model elements of the program to a new Model package.
-
-TODO: The Lane.java file has some GUI elements in it that need migrated to the correct classes.
