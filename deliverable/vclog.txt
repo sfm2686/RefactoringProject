@@ -1,0 +1,309 @@
+commit a59d670891f2302090796066f00b54781824e76c
+Merge: b7d8638 05ba98b
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Aug 3 19:53:36 2016 -0400
+
+    Last push before code freeze
+
+commit b7d8638d7b041a4022f1044f4dc85486c486024d
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Aug 3 19:50:34 2016 -0400
+
+    Created a deliverable directory containing our final submission, will have all documentationa as well.
+
+commit 05ba98bd90ede39bfac51aefa55cd0dff4fae1f9
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Wed Aug 3 18:24:47 2016 -0400
+
+    Added comments to the ScoreCalculator.java class
+
+commit 0f205c94632a98a2cc416112d5262298a80ae21c
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Tue Aug 2 17:21:08 2016 -0400
+
+    Got rid of RefactoringAlgo since me and Hunter got the logic out in ScoreCalculator in the coding session. So now the RefactoringAlgo is now useless.
+
+commit a0e2514de46aa692b45a14ddfc0d6705c545e7f3
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Aug 2 17:10:51 2016 -0400
+
+    Finished implementing Refactoring5 changed. See changes.txt in Refactoring5 for details. Sultan and Meghan helped.
+
+commit 55551812cd36f50de0d9a96a751d8ed279c08297
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Aug 2 15:36:18 2016 -0400
+
+    Created Ref5, which will contain the same funcitonal code as Ref4 with all of the lava code removed. Starting up from where Sultan and I ended yesterday with our pair programming session, where we finished migrating the getScore functionality to ScoreCalculator.
+
+commit 74bc074870f22930b0965d262d3d0b5fc144819e
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Aug 2 02:32:45 2016 -0400
+
+    Wrote a brand new ScoreCalculator class which takes over the getScore responsibility from Lane.
+
+commit 2cb50d825bf2c36e9281ed1979dae0031241da55
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Mon Aug 1 20:59:02 2016 -0400
+
+    Created a new directoring for our merging of Ref3 and RefAlgo.
+
+commit da5939f6ac7c95e7eade3f865b241a075ec60269
+Merge: 4ec05f5 876aad8
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Mon Aug 1 12:46:31 2016 -0400
+
+    Trying to do a merge, added a .gitignore file
+
+commit 4ec05f5d8ea56314d56c52e2636041a1db1c21ac
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Mon Aug 1 12:31:02 2016 -0400
+
+    Merging
+
+commit 9cabab459f3f9733137e0ef340f5b37c10df62fa
+Merge: 3477468 f71a15b
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Mon Aug 1 12:30:28 2016 -0400
+
+    Done with fixing the Lane Observable functionality.
+
+commit 876aad83cced71b57a487d86aad9ffee81b02a98
+Author: Sultan Mira <Muro@Sultans-MacBook-Pro.local>
+Date:   Mon Aug 1 00:17:22 2016 -0400
+
+    Fixed one of the conditions in getScore
+
+commit 3477468cf5caba7fa88a2c09c606fe984370e4af
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Sun Jul 31 23:48:39 2016 -0400
+
+    Merging
+
+commit 123ed92d3e02f008a9609eef00cba890fe6fe133
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Sun Jul 31 23:48:02 2016 -0400
+
+    Clean commit
+
+commit f71a15be59e0b4cb93ec20584c1729eb3019bd8c
+Author: Sultan Mira <Muro@Sultans-MacBook-Pro.local>
+Date:   Sun Jul 31 16:47:21 2016 -0400
+
+    Score calc algo works when the first frame contains a strike or normal numbers now. Still bugs out when the first frame contains a spare
+
+commit 486988aa44df5e7579f6021f40002f2a5a7dcceb
+Author: Sultan Mira <Muro@Sultans-MacBook-Pro.local>
+Date:   Sat Jul 30 17:44:11 2016 -0400
+
+    Replaced the project file I just made with one that IDE made. Because the IDE was not showing the project I manually made in the file tree
+
+commit 3561067137cf55098dc22b3f9c28c31c72e23844
+Author: Sultan Mira <Muro@Sultans-MacBook-Pro.local>
+Date:   Sat Jul 30 17:27:15 2016 -0400
+
+    Added a new refactoring version for the socring algo only
+
+commit 3146049ddcc97066badc142c3f0992d4dfd79e2b
+Merge: 3f3b979 3bcc8bd
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Thu Jul 28 15:56:20 2016 -0400
+
+    Merge remote-tracking branch 'refs/remotes/origin/master'
+
+commit 3f3b97927b45f7f30b1f961351057f76030e268a
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Thu Jul 28 15:56:17 2016 -0400
+
+    Merging
+
+commit 3bcc8bd4e6def33cc69f4d68caa29ea96c087690
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Thu Jul 28 15:46:05 2016 -0400
+
+    Switching laptops with Hunter for pair-programming
+
+commit 253c82f8740475761c181b01fe0f05b19c5b26e4
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Thu Jul 28 15:39:42 2016 -0400
+
+    Changed the thread/runnable implementation in Lane to be in line with our future refactoring.
+
+commit 15cd68e55cc37f7988efbb1aa377cd9b298f2343
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 20:21:42 2016 -0400
+
+    Adjourning the code meeting for today/
+    .
+
+commit f0b79be66ff0e4b377397741602899596a224299
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 20:01:50 2016 -0400
+
+    First steps in Ref3 complete. Implemented the correct Observer pattern between Pinsetter (as Observable) and Lane, PinsetterView and LaneStatusView (as Observers).
+
+commit a09250790e849b72f6a56799f1c0b65d79f1ffca
+Merge: f9057bb 1c350d5
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 18:50:03 2016 -0400
+
+    Merging
+
+commit f9057bb134753f8691771b13d0cfcb377755a4d1
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 18:48:48 2016 -0400
+
+    Reinit the Ref3 dir.
+
+commit 1c350d567c5a0ba1aa5af292c4aa59c0429ab27e
+Merge: ffa87fe b5f4f0b
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Wed Jul 27 18:24:03 2016 -0400
+
+    set up eclipse
+
+commit ffa87fe75dba6ebe434f20ac4c03a15ca9b6c93b
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Wed Jul 27 18:20:59 2016 -0400
+
+    merging
+
+commit b5f4f0b03993226c19c228a2910605cae66e1681
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 16:41:19 2016 -0400
+
+    Minor bug fix to LaneView.java in Ref3.
+
+commit 49317336247486802c1d7c2f8e7ab82f53feabaf
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 16:30:31 2016 -0400
+
+    Create and set up Refactoring3 directory for the next stage of the project.
+
+commit 35a9c2799214c1e46aa200ab374877122ff758c7
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 16:25:59 2016 -0400
+
+    Minor cosmetic change: fixed the color status of the Unpause Game button on the Control Desk View.
+
+commit 8b7200d2474bad89b4b89a91b611baf96b3bcb42
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 16:10:43 2016 -0400
+
+    Did the MVC Migration refactoring implementation. The specific changes are logged in the changed.txt file found in the Refactoring2 dir.
+
+commit ded908551b11055d2d7ac7ebac03d545d4f8b910
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 14:26:45 2016 -0400
+
+    Created the directory for the second refactoring and set it up.
+
+commit 69801e85240baa5e85c9e9bdb56ead3843700959
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 14:25:08 2016 -0400
+
+    Figured out the Refactoring implementation process. Changed the directory paths in the fatabse files within Refactoring1.
+
+commit aee8a20f4b106f2fad77a2c3473d58fb3cd89bd4
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 14:01:05 2016 -0400
+
+    Added the given project files to the repo.
+
+commit 5b46bd98d2b7eb78ec4126e589b2f648a16268cb
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Wed Jul 27 13:54:28 2016 -0400
+
+    Starting over with a clean workspace
+    :
+
+commit ec9eda188da605c797ff2e2c8717733197b1c8ca
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Jul 26 17:08:26 2016 -0400
+
+    Restructured the project repo.
+
+commit 835dea7683b5a2d9ca1b7af2461cdf9c04860a36
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Tue Jul 26 16:48:08 2016 -0400
+
+    Moved project desc outside of the refactoringproject dire
+
+commit 5dc30b049ccd73ba024feea3681430ab6737c07b
+Merge: 2a438d4 962ced8
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Jul 26 16:51:08 2016 -0400
+
+    Resolving conflicts
+
+commit 2a438d4866d2b240a57796abb1d038efc0594f0a
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Jul 26 16:50:08 2016 -0400
+
+    Merging
+
+commit 962ced882524958d56cf5c896668293afcac6937
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Tue Jul 26 16:44:48 2016 -0400
+
+    Renamed src to OriginalSourceCode
+
+commit a0a2e2013215b23de34db123725b7e72d52c33c1
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Tue Jul 26 16:42:41 2016 -0400
+
+    removed a src file
+
+commit b568bb9114a40370924bf768d01b344e5ee36870
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Tue Jul 26 16:41:30 2016 -0400
+
+    Kept an exact copy of all source code files in the src file. The EcProject is still the same.
+
+commit 1e9ebf253a355ffe94a3cf15db35ad7dcfe3ca8b
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Jul 26 16:44:29 2016 -0400
+
+    Removed the stupid RemoteSystemTempFiles dir.
+
+commit eb03f8bfee94f758c3dc27db53dccd2b5ace1f19
+Author: huntercaskey <hunterrcaskey@gmail.com>
+Date:   Tue Jul 26 16:43:48 2016 -0400
+
+    Moved the .dat files so the program would function properly.
+
+commit 7e0644e592607fd53128feef566f7d2dc988112d
+Author: Sultan Mira <Muro@sultans-mbp.wireless.rit.edu>
+Date:   Mon Jul 25 18:57:37 2016 -0400
+
+    played a lil bit with the code files to make it easier for IDE to make a project
+
+commit 26860afe7c7407f8203af52c3b646c9e9fab3dd3
+Merge: 66c200c b00538a
+Author: Sultan Mira <Muro@Sultans-MacBook-Pro.local>
+Date:   Mon Jul 25 18:47:43 2016 -0400
+
+    Merge branch 'master' of https://github.com/sfm2686/RefactoringProject
+
+commit 66c200c32391220ef21225779f3516a9968ae7ee
+Author: Sultan Mira <Muro@Sultans-MacBook-Pro.local>
+Date:   Mon Jul 25 18:47:27 2016 -0400
+
+    changed the dire structure a lil bit
+
+commit b00538ad27292903b6aa04f4fcf14743a8977d1f
+Author: mjd9008 <meghanjodwyer@gmail.com>
+Date:   Sun Jul 24 20:11:09 2016 -0400
+
+    Added a comment to test commits
+
+commit 9b7f7f9c6e72860aa6870bea187cd66104ab92e6
+Author: Sultan Mira <Muro@Sultans-MacBook-Pro.local>
+Date:   Thu Jul 21 23:46:57 2016 -0400
+
+    added dire
+
+commit 2796017e91f7dc8b9bd6370c8254718fdb0fff99
+Author: sfm2686 <murosm@live.com>
+Date:   Thu Jul 21 15:37:12 2016 -0400
+
+    Initial commit
