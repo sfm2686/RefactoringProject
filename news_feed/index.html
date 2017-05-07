@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>News Feed</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <style>
+        .center{
+            text-align: center;
+        }
+    </style>
+
+  </head>
+  <body>
+      <div class="container">
+        <form class="form-signin" onsubmit="login(); return false;">
+          <h2 class="form-signin-heading">Log In</h2>
+          <label for="inputUsername" class="sr-only">Username</label>
+          <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+        <div class="center">
+        <a id="register" data-toggle="modal" data-target="#validationModal">Register an account</a>
+        </div>
+      </div> <!-- /container -->
+
+      <div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content" id="modalContent">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Register an account</h4>
+              </div>
+              <div id="modalRegister" class="modal-body">
+                  <form class="form-register">
+                    <label for="registerUsername" class="sr-only">Username</label>
+                    <input type="text" id="registerUsername" class="form-control" placeholder="Username" required autofocus>
+                    <label for="registerPassword" class="sr-only">Password</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Password" required>
+                    <label for="registerPasswordCheck" class="sr-only">Password</label>
+                    <input type="password" id="registerPasswordCheck" class="form-control" placeholder="Confirm Password" required>
+                  </form>
+              </div>
+              <div class="modal-footer" id="modalButtons">
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelbtn">Cancel</button>
+                <button type="button" class="btn btn-primary" id="createUser">Register</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+        if (sessionStorage.getItem("user")) {
+            var start = window.location.toString().indexOf("index");
+            window.location = window.location.toString().slice(0, start) + "dashboard.html"
+        }
+
+        var login = function() {
+            var username = $("#inputUsername").val();
+            var password = $("#inputPassword").val();
+
+            if (localStorage.getItem(username)) {
+                var user = JSON.parse(localStorage.getItem(username));
+                if (user.password === password) {
+                    sessionStorage.setItem("user", username);
+                    var start = window.location.toString().indexOf("index");
+                    window.location = window.location.toString().slice(0, start) + "dashboard.html"
+                    return;
+                }
+            }
+
+            if(!$("#signinError").length){
+                var div = $("<div></div>").addClass("alert alert-warning alert-dismissible").attr("role", "alert").attr("id", "signinError");
+                div.append($("<button></button>").addClass("close").attr("data-dismiss", "alert").attr("aria-label", "Close")
+                            .append($("<span></span>").attr("aria-hidden", "true").html("&times;")));
+                div.append($("<strong></strong>").text("Error logging in!"));
+
+                $(".container").append(div);
+            }
+
+        }
+
+        $("#createUser").click(function(e) {
+            register();
+        });
+
+        var register = function() {
+            var username = $("#registerUsername").val();
+            var password = $("#registerPassword").val();
+            var passwordCheck = $("#registerPasswordCheck").val();
+
+            if (!localStorage.getItem(username) && password === passwordCheck) {
+                var user = { "name": username, "password": password, "lastVisited": new Date(), "favorites": [] };
+                localStorage.setItem(username, JSON.stringify(user));
+                location.reload();
+            }
+            else {
+                if(!$("#registerError").length){
+                    var div = $("<div></div>").addClass("alert alert-danger alert-dismissible").attr("role", "alert").attr("id", "registerError");
+                    div.append($("<button></button>").addClass("close").attr("data-dismiss", "alert").attr("aria-label", "Close")
+                                .append($("<span></span>").attr("aria-hidden", "true").html("&times;")));
+                    div.append($("<strong></strong>").text("Error during registration!"));
+                    $(".container").append(div);
+                }
+            }
+        }
+    </script>
+  </body>
+</html>

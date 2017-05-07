@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>News Feed</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.rss.js"></script>
+    <script src="js/moment.js"></script>
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        body { padding-top: 50px; }
+        #selects {
+            background-color: white;
+            z-index: 1;
+            margin:auto 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            position: fixed;
+            width:100%;
+            height:100px;
+        }
+        #categorySelect {
+            padding-top:10px;
+        }
+        #page-content-wrapper {
+            padding-top:110px;
+        }
+        .favorite {
+           color: blue;
+        }
+        .fa {
+            float:right;
+        }
+        .hide {
+            display: none;
+        }
+
+    </style>
+
+    <script>
+        var username = null;
+        if(sessionStorage.getItem("user")) {
+            username = sessionStorage.getItem("user");
+        }
+        else {
+            var start = window.location.toString().indexOf("dashboard");
+            window.location = window.location.toString().slice(0, start) + "index.html"
+        }
+
+        var user = JSON.parse(localStorage.getItem(username));
+        var lastVisited = user.lastVisited;
+        user.lastVisited = new Date();
+        localStorage.setItem("user", JSON.stringify(user));
+
+        var articles = [];
+        const SOURCE = 0;
+        const CATEGORY = 1;
+        const LINK = 2;
+        var rss = [
+            ["reuters", "arts", "http://feeds.reuters.com/news/artsculture"],
+            ["reuters", "business", "http://feeds.reuters.com/reuters/businessNews"],
+            ["reuters", "entertainment", "http://feeds.reuters.com/reuters/entertainment"],
+            ["reuters", "sports", "http://feeds.reuters.com/reuters/sportsNews"],
+            ["reuters", "technology", "http://feeds.reuters.com/reuters/technologyNews"],
+            ["reuters", "topNews", "http://feeds.reuters.com/reuters/topNews"],
+            ["reuters", "domesticNews", "http://feeds.reuters.com/Reuters/domesticNews"],
+            ["reuters", "worldNews", "http://feeds.reuters.com/Reuters/worldNews"],
+            ["bbc", "topNews", "http://feeds.bbci.co.uk/news/rss.xml?edition=us"],
+            ["bbc", "business", "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/business/rss.xml"],
+            ["bbc", "entertainment", "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/entertainment/rss.xml"],
+            ["bbc", "technology", "http://newsrss.bbc.co.uk/rss/newsonline_uk_edition/technology/rss.xml"],
+            ["cnn", "business", "http://rss.cnn.com/rss/money_latest.rss"],
+            ["cnn", "entertainment", "http://rss.cnn.com/rss/cnn_showbiz.rss"],
+            ["cnn", "technology", "http://rss.cnn.com/rss/cnn_tech.rss"],
+            ["cnn", "topNews", "http://rss.cnn.com/rss/cnn_topstories.rss"],
+            ["cnn", "domesticNews", "http://rss.cnn.com/rss/cnn_us.rss"],
+            ["cnn", "worldNews", "http://rss.cnn.com/rss/cnn_world.rss"],
+        ]
+
+        var sema = rss.length;
+        rss.forEach(function(e){
+            getFeed(e[SOURCE], e[CATEGORY], e[LINK]);
+        });
+
+        function getFeed(source, category, feed) {
+            $("").rss(feed, {
+                limit: 100000,
+                dateFormat: 'MMMM Do, YYYY',
+                onData: function(){
+                  for (var index in this.entries) {
+                      var item = this.entries[index];
+                      item.date = new Date(item.publishedDate);
+                      item.feed = feed;
+                      item.source = source;
+                      item.category = category;
+                      if(item.publishedDate) articles.push(item);
+                  }
+                  sema--;
+                  if(sema == 0) {
+                      sortArticles();
+                      buildPage();
+                  }
+              }
+            })
+        }
+
+        function logout() {
+            sessionStorage.removeItem("user");
+            var start = window.location.toString().indexOf("dashboard");
+            window.location = window.location.toString().slice(0, start) + "index.html"
+        }
+
+      function sortArticles() {
+        articles.sort(function(a, b) {
+            a = new Date(a.date);
+            b = new Date(b.date);
+            return a > b ? -1 : a < b ? 1 : 0;
+        });
+      }
+
+      function render(elementID, content) {
+          $(elementID).empty();
+          for(var index in content)
+          {
+              var article = createEntry(content[index]);
+              $(elementID).append(article);
+          }
+
+        //   for(var index in content)
+        //   {
+        //         var article = createEntry(content[index]);
+          //
+        //         var articleSet = $(elementID).children(".col-md-8 col-md-offset-2")["prevObject"];
+        //         for(var index in articleSet)
+        //         {
+        //             var curArticle = articleSet[index][0];
+          //
+        //             var curDate = $($(this).children().first()[0]).children(".date")[0];
+        //             var thisDate = $(article).children(".date").first()[0];
+          //
+        //             if(typeof(curDate) != "undefined"){
+        //                 if(new Date(curDate.innerText) <= new Date(thisDate.innerText)) {
+        //                     $(article).insertBefore($(this).children().first()[0]);
+        //                     return;
+        //                 }
+        //             }
+        //             else {
+        //                 $(this).append(article);
+        //             }
+        //         }
+        //   }
+      }
+
+     var createEntry = function(article) {
+        const p = document.createElement('p');
+        p.className = "col-md-8 col-md-offset-2";
+        p.id = article.link;
+        const favoriteNode = $("<i>").addClass("fa fa-thumbs-o-up");
+        var index = user.favorites.find(function(favorite){
+            return favorite.link == article.link;
+        });
+        if(index) $(favoriteNode).toggleClass("favorite");
+        $(favoriteNode).on("click", function(){
+            $(this).toggleClass("favorite");
+            var isFavorited = $(this).hasClass("favorite");
+            if (isFavorited) {
+                user.favorites.push(article);
+            }
+            else {
+                var id = this.parentElement.id;
+                var index = user.favorites.findIndex(function(article){
+                    return article.link == id;
+                });
+                user.favorites.splice(index, 1);
+            }
+            localStorage.setItem(username, JSON.stringify(user));
+        });
+        const dateNode = $("<em></em>").text(formatDatetime(new Date(article.date))).addClass("date");;
+        const linkNode = $('<a>').attr('href', article.link).text(article.title);
+        const feedNode = $("<h1></h1>").text(article.feed);
+        const descriptionNode = $("<p></p>").text(article.content);
+        $(p).append(dateNode).append("<br />").append(linkNode).append(favoriteNode).append("<br />").append(descriptionNode);
+        $(p).addClass(article.category).addClass(article.source);
+        return p;
+    };
+
+    function formatDatetime(fullDate) {
+        var hours = fullDate.getHours();
+        var minutes = fullDate.getMinutes();
+        var ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var strTime = hours + ':' + minutes + ' ' + ampm;
+        return fullDate.getMonth()+1 + "/" + fullDate.getDate() + "/" + fullDate.getFullYear() + "  " + strTime;
+    }
+
+    function formatDate(date){
+        return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
+    }
+
+    function showFavorites(){
+        render("#favoritesWrapper", user.favorites);
+        $("#feedWrapper").hide();
+        $("#favoritesWrapper").show();
+        $("#showFavoritesLink").addClass("active");
+        $("#showFeedLink").removeClass("active");
+    }
+    function showFeed(){
+        $("#feedWrapper").show();
+        $("#favoritesWrapper").hide();
+        $("#showFeedLink").addClass("active");
+        $("#showFavoritesLink").removeClass("active");
+    }
+
+    function buildPage(){
+        render("#rss-feeds", articles);
+        render("#favoritesWrapper", user.favorites);
+
+    }
+
+    </script>
+
+  </head>
+  <body>
+      <div class="container-fluid">
+
+          <nav class="navbar navbar-default navbar-fixed-top">
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <p class="navbar-text">FeedMe</p>
+                  <li id="showFeedLink" class="active"><a href="#" onclick="showFeed()">Feed</a></li>
+                  <li id="showFavoritesLink"><a href="#" onclick="showFavorites()">Favorites</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <p id="signedIn" class="navbar-text"></p>
+                    <script>
+                        $("#signedIn").text("Signed in as " + user.name + ", last visit: " + formatDate(user.lastVisited));
+                    </script>
+                    <li><a href="#" onclick="logout()">Log Out</a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav>
+
+         <div id="favoritesWrapper" hidden>
+
+         </div>
+
+      <div id="feedWrapper">
+        <div id="selects">
+          <div id="sourceSelect" class="row text-center">
+              <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="reuters" value="reuters" checked>Reuters
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="cnn" value="cnn" checked>CNN
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="bbc" value="bbc" checked>BBC
+                  </label>
+              </div>
+          </div>
+
+          <!-- <div id="categorySelect" class="row text-center">
+              <div class="btn-group" data-toggle="buttons">
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="arts" value="arts" checked>Arts
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="business" value="business" checked>Business
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="entertainment" value="entertainment" checked>Entertainment
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="sports" value="sports" checked>Sports
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="technology" value="technology" checked>Technology
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="topNews" value="topNews" checked>Top News
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="domesticNews" value="domesticNews" checked>U.S. News
+                  </label>
+                  <label class="btn btn-default active">
+                      <input type="checkbox" name="category" id="worldNews" value="worldNews" checked>World News
+                  </label>
+              </div>
+          </div> -->
+      </div>
+
+          <div id="page-content-wrapper">
+            <div class="row">
+                    <div id="rss-feeds" class="col-lg-12"> </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+         $(":checkbox").change(function() {
+             if(this.parentElement.parentElement.parentElement.id == "categorySelect")
+             {
+                 $("article", ("." + this.id))["prevObject"].each(function(){
+                     $(this).toggleClass("hide");
+                 });
+             }
+             else if(this.parentElement.parentElement.parentElement.id == "sourceSelect")
+             {
+                 $("article", ("." + this.id))["prevObject"].each(function(){
+                     $(this).toggleClass("hide");
+                 });
+             }
+
+        });
+
+
+     </script>
+
+  </body>
+</html>
